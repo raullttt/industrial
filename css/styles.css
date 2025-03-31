@@ -111,7 +111,7 @@ header {
 }
 
 h1 {
-    font-family: 'Industrial Poison', 'Industrial Sans', serif;
+    font-family: 'Industrial Poison', serif;
     font-size: 3.5rem;
     margin-bottom: 10px;
     letter-spacing: 2px;
@@ -250,7 +250,7 @@ h1 span {
 }
 
 .section-header h2 {
-    font-family: 'Industrial Poison', 'Industrial Sans', 'Montserrat', sans-serif;
+    font-family: 'Industrial Poison', 'Montserrat', sans-serif;
     color: var(--gold);
     font-size: 1.8rem;
     letter-spacing: 1px;
@@ -325,7 +325,7 @@ h1 span {
 }
 
 .subcategory-title {
-    font-family: 'Industrial Poison', 'Industrial Sans', 'Montserrat', sans-serif;
+    font-family: 'Industrial Poison', 'Montserrat', sans-serif;
     color: var(--gold);
     font-size: 1.5rem;
     margin-bottom: 15px;
@@ -489,7 +489,7 @@ footer::before {
 .contact-info h3 {
     color: var(--gold);
     margin-bottom: 15px;
-    font-family: 'Industrial Poison', 'Industrial Sans', serif;
+    font-family: 'Industrial Poison', serif;
     letter-spacing: 1px;
 }
 
