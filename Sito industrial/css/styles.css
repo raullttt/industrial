@@ -1,0 +1,724 @@
+/* Stile generale - Industrial Pizzeria */
+:root {
+    --dark-bg: #2C2C2C; /* Charcoal Black - Sfondo principale */
+    --gold: #B68F40; /* Old Brass - Colore per accenti, bordi, titoli e pulsanti */
+    --gold-light: #CDAE61; /* Burnished Gold - Per highlights e hover */
+    --text-light: #F0F0F0; /* Off-White - Testo principale */
+    --text-dark: #3D2B1F; /* Deep Brown - Per elementi secondari e hover */
+    --section-bg: #252525; /* Sfondo secondario più scuro */
+    --metal-dark: #3D3D3D; /* Colore di sfondo secondario */
+    --metal-light: #808080; /* Ash Gray - Per testo secondario e gradienti */
+    --accent-color: #CDAE61; /* Burnished Gold - Colore per evidenziazioni */
+    --gold-gradient: linear-gradient(135deg, #B68F40, #CDAE61); /* Gradiente brass to gold */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Industrial Poison';
+    src: url('../fonts/Industrial Poison.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+    background-image: linear-gradient(rgba(44, 44, 44, 0.95), rgba(44, 44, 44, 0.95)), 
+                    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23B68F40" stroke-width="0.5" stroke-opacity="0.15"/></svg>'),
+                    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M0,100 L200,100 M100,0 L100,200" stroke="%23808080" stroke-width="0.3" stroke-opacity="0.05"/></svg>');
+    background-size: cover, 20px 20px, 200px 200px;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* Elementi decorativi industriali */
+.container {
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="2" fill="%23B68F40" fill-opacity="0.1"/></svg>');
+    background-size: 50px 50px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect x="0" y="0" width="300" height="300" fill="none" stroke="%23CDAE61" stroke-width="1" stroke-opacity="0.03"/></svg>');
+    background-size: 300px 300px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--gold);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.star-logo {
+    background-color: var(--gold);
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(205, 174, 97, 0.5);
+    transition: all 0.3s ease;
+}
+
+.star-logo:hover {
+    /* Rimosso effetto hover */
+}
+
+.star-logo i {
+    font-size: 24px;
+    color: var(--dark-bg);
+}
+
+h1 {
+    font-family: 'Industrial Poison', 'Industrial Sans', serif;
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    display: inline-block;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+h1 span {
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding: 0 5px;
+    background-color: var(--gold);
+    color: var(--dark-bg);
+    border-radius: 3px;
+}
+
+.subtitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.subtitle p {
+    margin: 0 15px;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+}
+
+.line {
+    height: 1px;
+    width: 60px;
+    background-color: var(--gold);
+}
+
+.since {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--gold-light);
+}
+
+.restaurant-description {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-light);
+    padding: 10px 15px;
+    background-color: rgba(212, 175, 55, 0.1);
+    border-radius: 5px;
+}
+
+.allergens-note {
+    font-size: 0.85rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background-color: rgba(26, 26, 26, 0.5);
+    font-style: italic;
+    color: rgba(245, 245, 245, 0.9);
+    line-height: 1.4;
+}
+
+/* Menu Sections */
+.menu-section {
+    margin-bottom: 30px;
+    background-color: var(--section-bg);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(176, 141, 87, 0.3);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 3px solid var(--gold);
+}
+
+.menu-section:hover {
+    /* Rimosso effetto hover */
+}
+
+.menu-section::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-image: none;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: rgba(182, 143, 64, 0.1);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    border-bottom: 1px solid transparent;
+    border-image: var(--gold-gradient);
+    border-image-slice: 1;
+    box-shadow: inset 0 1px 0 rgba(240, 240, 240, 0.05);
+}
+
+.section-header:hover {
+    /* Rimosso effetto hover */
+}
+
+/* Effetto ripple per elementi cliccabili */
+.section-header {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(182, 143, 64, 0.25);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.section-header h2 {
+    font-family: 'Industrial Poison', 'Industrial Sans', 'Montserrat', sans-serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-icon i {
+    color: var(--gold);
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.section-header.active .dropdown-icon i {
+    transform: rotate(180deg);
+}
+
+.section-header.active + .section-content {
+    margin-top: 10px; /* Aggiunge spazio dopo l'header quando è attivo */
+}
+
+.section-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    opacity: 0;
+    will-change: max-height, opacity; /* Ottimizza l'animazione */
+}
+
+.section-content.active {
+    max-height: none; /* Cambiato da 2000px a none per evitare troncamenti */
+    opacity: 1;
+    overflow: visible; /* Assicura che il contenuto non venga troncato */
+}
+
+.menu-items {
+    padding: 20px;
+}
+
+.subcategory .menu-items {
+    padding: 10px 5px;
+}
+
+.subcategories-container {
+    padding: 0 20px;
+    margin: 20px 0; /* Aggiunto margine verticale per dare più respiro */
+    width: 100%; /* Assicura che occupi tutta la larghezza disponibile */
+}
+
+.subcategory {
+    margin-bottom: 30px;
+    margin-top: 15px; /* Aggiunto margine superiore per dare più respiro */
+    background-color: rgba(182, 143, 64, 0.05);
+    border-radius: 4px;
+    padding: 15px 15px 20px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(182, 143, 64, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: visible; /* Assicura che il contenuto non venga troncato */
+    min-height: fit-content; /* Garantisce che l'altezza si adatti al contenuto */
+    border-left: 2px solid var(--metal-light);
+    position: relative;
+    width: 96%; /* Leggermente più stretto del container per creare un effetto visivo */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subcategory:hover {
+    /* Rimosso effetto hover */
+}
+
+.subcategory:last-child {
+    margin-bottom: 0;
+}
+
+.subcategory-title {
+    font-family: 'Industrial Poison', 'Industrial Sans', 'Montserrat', sans-serif;
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    padding: 0 10px 8px 0; /* Padding a destra per evitare che il testo venga tagliato */
+    border-bottom: 1px solid rgba(182, 143, 64, 0.3);
+    letter-spacing: 0.8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    word-wrap: break-word; /* Assicura che le parole lunghe vadano a capo */
+    white-space: normal; /* Permette il wrapping del testo */
+    overflow: visible; /* Assicura che il testo non venga troncato */
+    width: 100%; /* Assicura che il titolo occupi tutta la larghezza disponibile */
+    height: auto; /* Altezza automatica in base al contenuto */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.subcategory-title::before {
+    content: "•";
+    color: var(--gold);
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.menu-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(182, 143, 64, 0.2);
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    padding: 5px 8px 15px 8px;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.menu-item-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.menu-item-price {
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 1.2rem;
+    background-color: rgba(182, 143, 64, 0.15);
+    padding: 3px 12px;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 0 0 1px rgba(182, 143, 64, 0.3);
+    transition: all 0.3s ease;
+}
+
+.menu-item-price:hover {
+    /* Rimosso effetto hover */
+}
+
+.menu-item-description {
+    font-size: 0.9rem;
+    color: rgba(245, 245, 245, 0.8);
+    margin-bottom: 8px;
+    padding: 0 5px 5px 0;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.menu-item-ingredients {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: rgba(245, 245, 245, 0.7);
+}
+
+.menu-item-allergeni {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.allergene-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: help;
+    background-color: rgba(182, 143, 64, 0.15);
+    border-radius: 50%;
+    padding: 4px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 0 0 1px rgba(182, 143, 64, 0.1);
+}
+
+.allergene-icon:hover {
+    /* Rimosso effetto hover */
+}
+
+.menu-item-note {
+    font-size: 0.8rem;
+    color: rgba(245, 245, 245, 0.6);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.menu-item-options {
+    margin-top: 8px;
+}
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    font-size: 0.9rem;
+}
+
+.option span:last-child {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    padding-top: 30px;
+    background-color: var(--section-bg);
+    border-radius: 8px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    border-top: 3px solid var(--gold);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,50 L100,50 M50,0 L50,100" stroke="%23808080" stroke-width="0.5" stroke-opacity="0.05"/></svg>');
+    background-size: 100px 100px;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-image: var(--gold-gradient);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.contact-info h3 {
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-family: 'Industrial Poison', 'Industrial Sans', serif;
+    letter-spacing: 1px;
+}
+
+.contact-info p {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.contact-info i {
+    color: var(--gold);
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.social-media {
+    display: flex;
+    gap: 15px;
+}
+
+.social-media a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: rgba(182, 143, 64, 0.1);
+    color: var(--gold);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 0 1px rgba(182, 143, 64, 0.3);
+    margin: 5px;
+}
+
+.social-media a:hover {
+    /* Rimosso effetto hover */
+}
+
+.copyright {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.8rem;
+    color: rgba(240, 240, 240, 0.6);
+    border-top: 1px solid rgba(182, 143, 64, 0.3);
+    background-color: rgba(44, 44, 44, 0.7);
+    position: relative;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="1" fill="%23808080" fill-opacity="0.05" x="0" y="25"/><rect width="1" height="50" fill="%23808080" fill-opacity="0.05" x="25" y="0"/></svg>');
+    background-size: 50px 50px;
+}
+
+.legal-info {
+    margin-top: 5px;
+    font-size: 0.75rem;
+    color: rgba(240, 240, 240, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .logo-decoration {
+        width: 50px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .social-media {
+        justify-content: center;
+    }
+    
+    /* Miglioramenti per tablet */
+    .menu-section {
+        margin-bottom: 25px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .section-header {
+        padding: 12px 15px;
+    }
+    
+    .section-header.active + .section-content {
+        margin-top: 8px; /* Aggiunge spazio dopo l'header quando è attivo (versione mobile) */
+    }
+    
+    .section-header:hover {
+        /* Rimosso effetto hover */
+    }
+    
+    .subcategories-container {
+        padding: 0 15px;
+        margin: 15px 0; /* Aggiunto margine verticale per dare più respiro */
+        width: 100%;
+    }
+    
+    .subcategory {
+        padding: 12px 12px 15px 12px;
+        margin-bottom: 20px;
+        margin-top: 12px; /* Aggiunto margine superiore per dare più respiro */
+        width: 96%; /* Leggermente più stretto del container */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .menu-items {
+        padding: 15px;
+    }
+    
+    .menu-item {
+        margin-bottom: 15px;
+        padding-bottom: 12px;
+    }
+    
+    .menu-item-header {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    /* Migliora la transizione dei dropdown */
+    .section-content {
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle p {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .menu-item-name {
+        font-size: 1.1rem;
+        flex: 1;
+        padding-right: 10px;
+    }
+    
+    .menu-item-price {
+        font-size: 1.1rem;
+        white-space: nowrap;
+    }
+    
+    .restaurant-description {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+    
+    .menu-item-header {
+        align-items: flex-start;
+    }
+    
+    .container {
+        padding: 15px 10px;
+    }
+    
+    /* Ottimizzazioni aggiuntive per mobile */
+    .menu-section {
+        margin-bottom: 20px;
+    }
+    
+    .section-header {
+        padding: 10px 12px;
+    }
+    
+    .section-header:hover {
+        /* Rimosso effetto hover */
+    }
+    
+    .subcategories-container {
+        padding: 0 10px;
+        margin: 12px 0; /* Aggiunto margine verticale per dare più respiro */
+        width: 100%;
+    }
+    
+    .subcategory {
+        padding: 10px 10px 12px 10px;
+        margin-bottom: 15px;
+        margin-top: 10px; /* Aggiunto margine superiore per dare più respiro */
+        width: 96%; /* Leggermente più stretto del container */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .menu-items {
+        padding: 10px 5px;
+    }
+    
+    .menu-item {
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+    }
+    
+    .subcategory-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        padding: 0 5px 6px 0;
+    }
+    
+    .menu-item-description {
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+    }
+    
+    .menu-item-options {
+        margin-top: 6px;
+    }
+    
+    .option {
+        padding: 2px 0;
+        font-size: 0.85rem;
+    }
+    
+    /* Migliora la transizione dei dropdown */
+    .section-header.active + .section-content {
+        margin-top: 6px; /* Aggiunge spazio dopo l'header quando è attivo (versione mobile piccolo) */
+    }
+    
+    .section-content {
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+    }
+}

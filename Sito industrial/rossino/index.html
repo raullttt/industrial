@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial14 - Ristorante</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/industrial-sans" rel="stylesheet">
+    <script src="../js/animations.js" defer></script>
+    <!-- Aggiungi l'attributo type="module" per supportare le importazioni ES6 -->
+    <script src="../js/script.js" type="module" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="star-logo">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+            <h1>INDUSTRIAL<span>14</span></h1>
+            <div class="subtitle">
+                <div class="line"></div>
+                <p>COFFEE, BEER, BURGERS AND PIZZA</p>
+                <div class="line"></div>
+            </div>
+            <p class="since">SINCE 2021</p>
+            <div class="allergens-note">
+                <p>Per qualsiasi informazione su sostanze e allergeni è possibile consultare l'apposita documentazione che verrà fornita dal personale in servizio</p>
+            </div>
+        </header>
+
+        <main id="menu-container">
+            <!-- Le sezioni del menu verranno generate dinamicamente tramite JavaScript -->
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="contact-info">
+                    <h3>INDUSTRIAL14</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Via Roma, 14 - Bergamo</p>
+                    <p><i class="fas fa-phone"></i> +39 123 456 7890</p>
+                    <p><i class="fas fa-envelope"></i> info@industrial14.it</p>
+                </div>
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Industrial14. Tutti i diritti riservati.</p>
+                <p class="legal-info">P.IVA: 12345678901 | REA: BG-123456 | Cap. Soc. €10.000 i.v.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Includiamo menu.js direttamente prima di script.js -->
+    <script src="../js/allergeni.js" type="module"></script>
+    <script src="js/menu.js"></script>
+    <script src="../js/script.js" type="module"></script>
+</body>
+</html>

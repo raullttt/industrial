@@ -1,0 +1,90 @@
+/* Stili per il widget della mappa dei ristoranti */
+.map-widget-container {
+    margin: 50px auto;
+    max-width: 800px;
+    background-color: var(--section-bg);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.map-widget-header {
+    background: var(--gold-gradient);
+    color: var(--text-dark);
+    padding: 15px 20px;
+    text-align: center;
+    font-family: 'Industrial Poison', 'Industrial Sans', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.map-container {
+    height: 400px;
+    width: 100%;
+    position: relative;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+.map-info {
+    padding: 15px 20px;
+    color: var(--text-light);
+    font-size: 14px;
+    text-align: center;
+    border-top: 1px solid rgba(176, 141, 87, 0.3);
+}
+
+.restaurant-marker-info {
+    color: var(--text-dark);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.restaurant-marker-info h4 {
+    color: var(--gold);
+    font-family: 'Industrial Poison', 'Industrial Sans', sans-serif;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.restaurant-marker-info p {
+    margin: 5px 0;
+}
+
+.restaurant-marker-info a {
+    display: inline-block;
+    background: var(--gold-gradient);
+    color: var(--text-dark);
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 8px;
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+.restaurant-marker-info a:hover {
+    transform: scale(1.05);
+}
+
+/* Stile per il pulsante di zoom della mappa */
+.gm-style-cc, .gmnoprint {
+    filter: invert(90%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .map-container {
+        height: 300px;
+    }
+    
+    .map-widget-container {
+        margin: 30px 15px;
+    }
+}
