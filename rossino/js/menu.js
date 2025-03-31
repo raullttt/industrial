@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Altrimenti carica i dati dal file JSON
-        fetch('../../data/menu_completo_rossino.json')
+        fetch('../data/menu_completo_rossino.json')
             .then(response => response.json())
             .then(data => {
                 // Aggiorna la cache e il timestamp
