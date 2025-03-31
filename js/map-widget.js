@@ -1,4 +1,5 @@
 // Widget della mappa dei ristoranti Industrial 14
+// Utilizza AdvancedMarkerElement invece del deprecato Marker
 // NOTA: Per utilizzare questa mappa, è necessario sostituire 'YOUR_API_KEY' nel tag script di Google Maps in index.html con una chiave API valida
 
 // Coordinate dei ristoranti
@@ -76,23 +77,8 @@ function initMap() {
     // Variabile per tenere traccia della finestra info attualmente aperta
     let currentOpenInfoWindow = null;
     
-    // Aggiungi i marker per ogni ristorante
+    // Aggiungi i marker per ogni ristorante utilizzando AdvancedMarkerElement
     restaurantLocations.forEach(location => {
-        const marker = new google.maps.Marker({
-            position: { lat: location.lat, lng: location.lng },
-            map: map,
-            title: location.name,
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: '#CDAE61',
-                fillOpacity: 1,
-                strokeColor: '#CDAE61',
-                strokeWeight: 1,
-                scale: 8
-            },
-            animation: google.maps.Animation.DROP
-        });
-
         // Crea il contenuto della finestra info
         const infoContent = `
             <div class="restaurant-marker-info">
@@ -102,12 +88,59 @@ function initMap() {
             </div>
         `;
 
-        // Crea la finestra info con animazione
+        // Crea la finestra info
         const infoWindow = new google.maps.InfoWindow({
             content: infoContent,
             maxWidth: 300,
             pixelOffset: new google.maps.Size(0, -5)
         });
+
+        // Crea un elemento div per il marker personalizzato
+        const markerDiv = document.createElement('div');
+        markerDiv.className = 'custom-marker';
+        markerDiv.style.width = '16px';
+        markerDiv.style.height = '16px';
+        markerDiv.style.borderRadius = '50%';
+        markerDiv.style.backgroundColor = '#CDAE61';
+        markerDiv.style.border = '1px solid #CDAE61';
+        markerDiv.style.transition = 'all 0.3s';
+        
+        // Crea il marker avanzato
+        const marker = new google.maps.marker.AdvancedMarkerElement({
+            position: { lat: location.lat, lng: location.lng },
+            map: map,
+            title: location.name,
+            content: markerDiv
+        });
+
+        // Aggiungi l'animazione di drop iniziale
+        setTimeout(() => {
+            markerDiv.animate(
+                [
+                    { transform: 'translateY(-50px)', opacity: 0 },
+                    { transform: 'translateY(0)', opacity: 1 }
+                ],
+                {
+                    duration: 500,
+                    fill: 'forwards'
+                }
+            );
+        }, 300 * restaurantLocations.indexOf(location));
+
+        // Funzione per animare il marker quando viene cliccato
+        const bounceMarker = () => {
+            markerDiv.animate(
+                [
+                    { transform: 'translateY(0)' },
+                    { transform: 'translateY(-20px)' },
+                    { transform: 'translateY(0)' }
+                ],
+                {
+                    duration: 750,
+                    fill: 'forwards'
+                }
+            );
+        };
 
         // Aggiungi l'evento click al marker
         marker.addListener('click', () => {
@@ -118,53 +151,40 @@ function initMap() {
                 // Se la finestra che stiamo per aprire è già aperta, la chiudiamo e usciamo
                 if (currentOpenInfoWindow === infoWindow) {
                     currentOpenInfoWindow = null;
-                    // Ripristina l'animazione del marker
-                    marker.setAnimation(null);
-                    setTimeout(() => {
-                        marker.setAnimation(google.maps.Animation.BOUNCE);
-                        setTimeout(() => {
-                            marker.setAnimation(null);
-                        }, 750);
-                    }, 50);
+                    // Anima il marker
+                    bounceMarker();
                     return;
                 }
             }
             
-            // Imposta l'animazione del marker quando viene cliccato
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-            setTimeout(() => {
-                marker.setAnimation(null);
-            }, 750);
+            // Anima il marker quando viene cliccato
+            bounceMarker();
             
             // Apri la nuova finestra info e tieni traccia di essa
-            infoWindow.open(map, marker);
+            infoWindow.open({
+                map: map,
+                anchor: marker,
+                shouldFocus: false
+            });
             currentOpenInfoWindow = infoWindow;
         });
         
-        // Aggiungi animazione hover al marker
-        marker.addListener('mouseover', () => {
-            if (marker.getAnimation() !== google.maps.Animation.BOUNCE) {
-                marker.setIcon({
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: '#CDAE61',
-                    fillOpacity: 1,
-                    strokeColor: '#FFFFFF',
-                    strokeWeight: 2,
-                    scale: 9
-                });
+        // Aggiungi effetti hover al marker
+        marker.content.addEventListener('mouseover', () => {
+            if (!markerDiv.classList.contains('animating')) {
+                markerDiv.style.backgroundColor = '#CDAE61';
+                markerDiv.style.border = '2px solid #FFFFFF';
+                markerDiv.style.width = '18px';
+                markerDiv.style.height = '18px';
             }
         });
         
-        marker.addListener('mouseout', () => {
-            if (marker.getAnimation() !== google.maps.Animation.BOUNCE) {
-                marker.setIcon({
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: '#CDAE61',
-                    fillOpacity: 1,
-                    strokeColor: '#CDAE61',
-                    strokeWeight: 1,
-                    scale: 8
-                });
+        marker.content.addEventListener('mouseout', () => {
+            if (!markerDiv.classList.contains('animating')) {
+                markerDiv.style.backgroundColor = '#CDAE61';
+                markerDiv.style.border = '1px solid #CDAE61';
+                markerDiv.style.width = '16px';
+                markerDiv.style.height = '16px';
             }
         });
         
