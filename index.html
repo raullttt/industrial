@@ -6,9 +6,10 @@
     <title>Industrial - Scegli il tuo ristorante</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/map-widget.css">
+    <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  
+    <link href="https://fonts.cdnfonts.com/css/industrial-sans" rel="stylesheet">
     <style>
         /* Stili specifici per la pagina di selezione ristorante */
         .restaurant-selection {
@@ -169,6 +170,69 @@
             </div>
         </main>
 
+        <!-- Carosello dei piatti -->
+        <div class="dishes-carousel-section">
+            <h2 class="dishes-carousel-title">I NOSTRI PIATTI</h2>
+            <p class="dishes-carousel-subtitle">Scopri le nostre specialità preparate con ingredienti freschi e di qualità</p>
+            
+            <div class="dishes-carousel">
+                <div class="dishes-carousel-container">
+                    <!-- Card dei piatti (placeholder) -->
+                    <div class="dish-card">
+                        <div class="dish-image dish-placeholder"></div>
+                        <div class="dish-info">
+                            <h3 class="dish-name">PIZZA MARGHERITA</h3>
+                            <p class="dish-description">La classica pizza con pomodoro, mozzarella e basilico</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card">
+                        <div class="dish-image dish-placeholder"></div>
+                        <div class="dish-info">
+                            <h3 class="dish-name">BURGER INDUSTRIAL</h3>
+                            <p class="dish-description">Il nostro burger speciale con carne di manzo, formaggio e salsa segreta</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card">
+                        <div class="dish-image dish-placeholder"></div>
+                        <div class="dish-info">
+                            <h3 class="dish-name">PASTA CARBONARA</h3>
+                            <p class="dish-description">Spaghetti con uova, guanciale, pecorino e pepe nero</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card">
+                        <div class="dish-image dish-placeholder"></div>
+                        <div class="dish-info">
+                            <h3 class="dish-name">INSALATA GOURMET</h3>
+                            <p class="dish-description">Mix di insalate con noci, formaggio di capra e dressing al miele</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card">
+                        <div class="dish-image dish-placeholder"></div>
+                        <div class="dish-info">
+                            <h3 class="dish-name">TIRAMISU</h3>
+                            <p class="dish-description">Il classico dessert italiano con mascarpone, caffè e cacao</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card">
+                        <div class="dish-image dish-placeholder"></div>
+                        <div class="dish-info">
+                            <h3 class="dish-name">RISOTTO AI FUNGHI</h3>
+                            <p class="dish-description">Cremoso risotto con funghi porcini e parmigiano</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-nav">
+                <!-- I punti di navigazione saranno generati da JavaScript -->
+            </div>
+        </div>
+
         <!-- Widget della mappa dei ristoranti -->
         <div class="map-widget-container">
             <div class="map-widget-header">
@@ -206,5 +270,6 @@
     <!-- Script per la mappa -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD22KiHxtby4KN6v8XjkgGRNj7Gu_djrDQ&callback=initMap" async defer></script>
     <script src="js/map-widget.js"></script>
+    <script src="js/carousel.js"></script>
 </body>
 </html>
