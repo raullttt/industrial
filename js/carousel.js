@@ -1,6 +1,7 @@
 /**
  * Industrial14 - Carosello dei piatti
  * Questo file gestisce il carosello automatico delle immagini dei piatti
+ * con supporto per interazione touch e mouse
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,6 +16,7 @@ function initDishesCarousel() {
     const carousel = document.querySelector('.dishes-carousel-container');
     if (!carousel) return;
     
+    const carouselWrapper = document.querySelector('.dishes-carousel');
     const cards = carousel.querySelectorAll('.dish-card');
     const dotsContainer = document.querySelector('.carousel-nav');
     
@@ -24,6 +26,13 @@ function initDishesCarousel() {
     let visibleCards = getVisibleCardsCount();
     let currentIndex = 0;
     let autoplayInterval;
+    let userInteracting = false;
+    let interactionTimeout;
+    
+    // Variabili per il touch
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchThreshold = 50; // Soglia minima di spostamento per considerare uno swipe
     
     // Crea i punti di navigazione
     createNavigationDots();
@@ -40,6 +49,17 @@ function initDishesCarousel() {
         updateCarouselLayout();
         moveToSlide(currentIndex);
     });
+    
+    // Aggiungi eventi touch per lo scorrimento
+    carouselWrapper.addEventListener('touchstart', handleTouchStart, { passive: true });
+    carouselWrapper.addEventListener('touchmove', handleTouchMove, { passive: true });
+    carouselWrapper.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
+    // Aggiungi eventi mouse per lo scorrimento (per desktop)
+    carouselWrapper.addEventListener('mousedown', handleMouseDown);
+    carouselWrapper.addEventListener('mousemove', handleMouseMove);
+    carouselWrapper.addEventListener('mouseup', handleMouseUp);
+    carouselWrapper.addEventListener('mouseleave', handleMouseUp);
     
     /**
      * Crea i punti di navigazione per il carosello
@@ -116,16 +136,18 @@ function initDishesCarousel() {
         // Pulisci eventuali intervalli esistenti
         if (autoplayInterval) clearInterval(autoplayInterval);
         
-        // Imposta un nuovo intervallo
-        autoplayInterval = setInterval(function() {
-            const totalSlides = Math.ceil(cards.length / visibleCards);
-            let nextIndex = currentIndex + 1;
-            
-            // Torna all'inizio se siamo alla fine
-            if (nextIndex >= totalSlides) nextIndex = 0;
-            
-            moveToSlide(nextIndex);
-        }, 5000); // Cambia slide ogni 5 secondi
+        // Imposta un nuovo intervallo solo se l'utente non sta interagendo
+        if (!userInteracting) {
+            autoplayInterval = setInterval(function() {
+                const totalSlides = Math.ceil(cards.length / visibleCards);
+                let nextIndex = currentIndex + 1;
+                
+                // Torna all'inizio se siamo alla fine
+                if (nextIndex >= totalSlides) nextIndex = 0;
+                
+                moveToSlide(nextIndex);
+            }, 5000); // Cambia slide ogni 5 secondi
+        }
     }
     
     /**
@@ -133,7 +155,18 @@ function initDishesCarousel() {
      */
     function resetAutoplay() {
         if (autoplayInterval) clearInterval(autoplayInterval);
-        startAutoplay();
+        
+        // Cancella eventuali timeout esistenti
+        if (interactionTimeout) clearTimeout(interactionTimeout);
+        
+        // Imposta un flag per indicare che l'utente sta interagendo
+        userInteracting = true;
+        
+        // Imposta un timeout per riavviare l'autoplay dopo 3 secondi di inattività
+        interactionTimeout = setTimeout(function() {
+            userInteracting = false;
+            startAutoplay();
+        }, 3000);
     }
     
     /**
@@ -151,5 +184,109 @@ function initDishesCarousel() {
         } else {
             return 5; // Mostra 5 card su schermi grandi
         }
+    }
+    
+    /**
+     * Gestisce l'evento touchstart
+     */
+    function handleTouchStart(e) {
+        touchStartX = e.touches[0].clientX;
+        resetAutoplay();
+        
+        // Aggiungi la classe grabbing durante il touch
+        carousel.classList.add('grabbing');
+    }
+    
+    /**
+     * Gestisce l'evento touchmove
+     */
+    function handleTouchMove(e) {
+        if (!touchStartX) return;
+        touchEndX = e.touches[0].clientX;
+    }
+    
+    /**
+     * Gestisce l'evento touchend
+     */
+    function handleTouchEnd() {
+        if (!touchStartX || !touchEndX) return;
+        
+        const swipeDistance = touchEndX - touchStartX;
+        
+        // Se lo swipe è abbastanza lungo, cambia slide
+        if (Math.abs(swipeDistance) > touchThreshold) {
+            if (swipeDistance > 0) {
+                // Swipe verso destra (slide precedente)
+                moveToSlide(currentIndex - 1);
+            } else {
+                // Swipe verso sinistra (slide successiva)
+                moveToSlide(currentIndex + 1);
+            }
+        }
+        
+        // Rimuovi la classe grabbing quando finisce il touch
+        carousel.classList.remove('grabbing');
+        
+        // Resetta le variabili touch
+        touchStartX = 0;
+        touchEndX = 0;
+    }
+    
+    // Variabili per il mouse drag
+    let isDragging = false;
+    let startMouseX = 0;
+    let endMouseX = 0;
+    
+    /**
+     * Gestisce l'evento mousedown
+     */
+    function handleMouseDown(e) {
+        isDragging = true;
+        startMouseX = e.clientX;
+        resetAutoplay();
+        
+        // Aggiungi la classe grabbing durante il trascinamento
+        carousel.classList.add('grabbing');
+        
+        // Previeni il comportamento di default (selezione testo)
+        e.preventDefault();
+    }
+    
+    /**
+     * Gestisce l'evento mousemove
+     */
+    function handleMouseMove(e) {
+        if (!isDragging) return;
+        endMouseX = e.clientX;
+        e.preventDefault();
+    }
+    
+    /**
+     * Gestisce l'evento mouseup/mouseleave
+     */
+    function handleMouseUp(e) {
+        if (!isDragging) return;
+        
+        const dragDistance = endMouseX - startMouseX;
+        
+        // Se il drag è abbastanza lungo, cambia slide
+        if (Math.abs(dragDistance) > touchThreshold) {
+            if (dragDistance > 0) {
+                // Drag verso destra (slide precedente)
+                moveToSlide(currentIndex - 1);
+            } else {
+                // Drag verso sinistra (slide successiva)
+                moveToSlide(currentIndex + 1);
+            }
+        }
+        
+        // Rimuovi la classe grabbing quando finisce il trascinamento
+        carousel.classList.remove('grabbing');
+        
+        // Resetta le variabili drag
+        isDragging = false;
+        startMouseX = 0;
+        endMouseX = 0;
+        e.preventDefault();
     }
 }

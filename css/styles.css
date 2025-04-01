@@ -30,11 +30,7 @@ body {
     background-color: var(--dark-bg);
     color: var(--text-light);
     line-height: 1.6;
-    background-image: linear-gradient(rgba(44, 44, 44, 0.95), rgba(44, 44, 44, 0.95)), 
-                    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23B68F40" stroke-width="0.5" stroke-opacity="0.15"/></svg>'),
-                    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M0,100 L200,100 M100,0 L100,200" stroke="%23808080" stroke-width="0.3" stroke-opacity="0.05"/></svg>');
-    background-size: cover, 20px 20px, 200px 200px;
-    background-attachment: fixed;
+    /* Lo sfondo è definito nelle media query per responsività */
 }
 
 .container {
@@ -57,8 +53,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="2" fill="%23B68F40" fill-opacity="0.1"/></svg>');
-    background-size: 50px 50px;
+    /* Rimosso pattern SVG */
+    background-image: none;
     z-index: -1;
     pointer-events: none;
 }
@@ -70,8 +66,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><rect x="0" y="0" width="300" height="300" fill="none" stroke="%23CDAE61" stroke-width="1" stroke-opacity="0.03"/></svg>');
-    background-size: 300px 300px;
+    /* Rimosso pattern SVG */
+    background-image: none;
     z-index: -1;
     pointer-events: none;
 }
@@ -484,6 +480,36 @@ footer::before {
     flex-wrap: wrap;
     margin-bottom: 20px;
     padding: 0 20px;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin: 0 10px 20px;
+    padding: 0 10px;
+}
+
+.footer-section.coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(182, 143, 64, 0.05);
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 0 0 1px rgba(182, 143, 64, 0.2);
+}
+
+.footer-section.coming-soon h3 {
+    margin-bottom: 5px;
+}
+
+.footer-section.coming-soon p {
+    text-align: center;
+    font-style: italic;
+    color: rgba(240, 240, 240, 0.7);
 }
 
 .contact-info h3 {
@@ -505,9 +531,20 @@ footer::before {
     text-align: center;
 }
 
+.contact-info a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--gold);
+}
+
 .social-media {
     display: flex;
     gap: 15px;
+    margin-top: 10px;
 }
 
 .social-media a {
@@ -546,8 +583,28 @@ footer::before {
     color: rgba(240, 240, 240, 0.5);
 }
 
-/* Responsive */
+/* Responsive Background Images */
+/* Immagine di sfondo per dispositivi desktop */
+@media (min-width: 769px) {
+    body {
+        background-image: url('../img/backgrounds/sfondo_desktop.jpg'),
+                      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23B68F40" stroke-width="0.5" stroke-opacity="0.15"/></svg>');
+        background-size: cover, 20px 20px;
+        background-attachment: fixed;
+        background-position: center;
+    }
+}
+
+/* Immagine di sfondo per dispositivi mobili */
 @media (max-width: 768px) {
+    body {
+        background-image: url('../img/backgrounds/sfondo_mobile.jpg'),
+                      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23B68F40" stroke-width="0.5" stroke-opacity="0.15"/></svg>');
+        background-size: cover, 20px 20px;
+        /* Ottimizzazione per prestazioni su mobile */
+        background-attachment: scroll;
+    }
+    
     h1 {
         font-size: 2.5rem;
     }
@@ -561,8 +618,26 @@ footer::before {
         gap: 20px;
     }
     
+    .footer-section {
+        width: 100%;
+        margin: 0 0 15px;
+    }
+    
+    .footer-section .contact-info {
+        display: inline-block;
+        width: calc(100% - 60px);
+        vertical-align: top;
+    }
+    
+    .footer-section .social-media {
+        display: inline-flex;
+        vertical-align: top;
+        margin-top: 15px;
+        margin-left: 10px;
+    }
+    
     .social-media {
-        justify-content: center;
+        justify-content: flex-start;
     }
     
     /* Miglioramenti per tablet */
@@ -721,4 +796,7 @@ footer::before {
     .section-content {
         transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
     }
+
+   
+      
 }

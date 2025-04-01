@@ -33,6 +33,12 @@
     display: flex;
     transition: transform 0.5s ease;
     gap: 20px;
+    cursor: grab;
+}
+
+.dishes-carousel-container.grabbing {
+    cursor: grabbing;
+    transition: transform 0.3s ease;
 }
 
 .dish-card {

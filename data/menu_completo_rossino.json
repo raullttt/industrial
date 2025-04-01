@@ -545,7 +545,7 @@
         ]
       },
       {
-        "categoria": "DOLCI 🍰",
+        "categoria": "DOLCI",
         "prodotti": [
           {
             "nome": "TIRAMISÙ",
@@ -580,7 +580,7 @@
         ]
       },
       {
-        "categoria": "BIRRE 🍺",
+        "categoria": "BIRRE",
         "prodotti": [
           {
             "nome": "CANEDIGUERRA",
@@ -625,7 +625,7 @@
         ]
       },
       {
-        "categoria": "BEVANDE 🥤",
+        "categoria": "BEVANDE",
         "prodotti": [
           {
             "nome": "CAFFÈ",
