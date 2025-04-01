@@ -30,8 +30,16 @@ const restaurantLocations = [
     }
 ];
 
-// La funzione initMap verrà chiamata automaticamente dall'API di Google Maps
-// tramite il parametro callback nell'URL dello script
+// Inizializza la mappa quando il documento è completamente caricato
+document.addEventListener('DOMContentLoaded', function() {
+    // Verifica che l'API di Google Maps sia caricata
+    if (typeof google === 'undefined') {
+        console.error('Google Maps API non è stata caricata correttamente');
+        return;
+    }
+    
+    initMap();
+});
 
 function initMap() {
     // Verifica se l'elemento mappa esiste
@@ -142,8 +150,8 @@ function initMap() {
             );
         };
 
-        // Aggiungi l'evento click al marker
-        marker.addListener('click', () => {
+        // Aggiungi l'evento gmp-click al marker
+        marker.addListener('gmp-click', () => {
             // Chiudi la finestra info attualmente aperta (se esiste)
             if (currentOpenInfoWindow) {
                 currentOpenInfoWindow.close();

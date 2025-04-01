@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Industrial - Scegli il tuo ristorante</title>
+    <title>Industrial 14</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/map-widget.css">
     <link rel="stylesheet" href="css/carousel.css">
@@ -27,7 +27,9 @@
         }
                 
         .express-img {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" fill="%233D3D3D"/><text x="150" y="100" font-family="Arial" font-size="18" fill="%23CDAE61" text-anchor="middle">Industrial Express</text></svg>');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('img/location/calolzio_card.jpg');
+            background-size: cover;
+            background-position: center;
         }
         
         .cisano-img {
@@ -50,10 +52,9 @@
                 <p>COFFEE, BEER, BURGERS AND PIZZA</p>
                 <div class="line"></div>
             </div>
-            <p class="since">SINCE 2019</p>
         </header>
 
-        <h2 class="main-title">SCEGLI IL TUO LOCALE</h2>
+        <h2 class="main-title">LE NOSTRE LOCATION</h2>
         <p class="subtitle">Scopri le nostre diverse location e trova quella più adatta alle tue esigenze</p>
 
         <main class="restaurant-selection">
@@ -99,16 +100,16 @@
                     <div class="dish-card">
                         <div class="dish-image dish-placeholder"></div>
                         <div class="dish-info">
-                            <h3 class="dish-name">PIZZA MARGHERITA</h3>
-                            <p class="dish-description">La classica pizza con pomodoro, mozzarella e basilico</p>
+                            <h3 class="dish-name">PIZZA OL DIAOL</h3>
+                            <p class="dish-description">La pizza che infiamma i sensi: pomodoro, fiordilatte, salamino piccante, 'nduja esplosiva e ricotta di bufala per un tocco vellutato.</p>
                         </div>
                     </div>
                     
                     <div class="dish-card">
                         <div class="dish-image dish-placeholder"></div>
                         <div class="dish-info">
-                            <h3 class="dish-name">BURGER INDUSTRIAL</h3>
-                            <p class="dish-description">Il nostro burger speciale con carne di manzo, formaggio e salsa segreta</p>
+                            <h3 class="dish-name">BURGER L’ESAGERAT</h3>
+                            <p class="dish-description">Un morso di pura goduria: Black Angus succulento, uovo cremoso, bacon croccante, anelli di cipolla dorati e scaglie di grana per il tocco finale</p>
                         </div>
                     </div>
                     
@@ -154,13 +155,13 @@
         <!-- Widget della mappa dei ristoranti -->
         <div class="map-widget-container">
             <div class="map-widget-header">
-                TROVA I NOSTRI RISTORANTI
+                TROVA I NOSTRI LOCALI
             </div>
             <div class="map-container">
                 <div id="map"></div>
             </div>
             <div class="map-info">
-                Visita uno dei nostri ristoranti Industrial 14 e scopri l'esperienza unica che abbiamo creato per te.
+                Visita uno dei nostri foos spot Industrial 14 e scopri l'esperienza che abbiamo creato per te.
             </div>
         </div>
 
@@ -203,8 +204,8 @@
     </div>
     
     <!-- Script per la mappa -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD22KiHxtby4KN6v8XjkgGRNj7Gu_djrDQ&callback=initMap" async defer></script>
-    <script src="js/map-widget.js"></script>
     <script src="js/carousel.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=XXX&libraries=marker"></script>
+    <script src="js/map-widget.js"></script>
 </body>
 </html>
